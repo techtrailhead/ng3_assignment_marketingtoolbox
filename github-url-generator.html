@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="get your github link with just your username"
+    />
+    <title>GitHub URL Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <hgroup>
+        <hgroup>
+            <nav>
+              <ul>
+                <li><a href="index.html">SmartMarketer Tools</a></li>
+              </ul>
+              <ul>
+                <li><a href="wami-link.html"> WAMI link</a></li>
+                <li><a href="twitter-share.html"> Tweet Link Generator</a></li>
+                <li>
+                  <a href="github-url-generator.html">GitHub Link Generator</a>
+                </li>
+              </ul>
+            </nav>
+            <hr />
+        <h1>GitHub URL Generator</h1>
+        <p>Get your GitHub link URL from just your username</p>
+      </hgroup>
+    </header>
+    <main class="container">
+      <fieldset>
+        <input
+          type="text"
+          id="githubInput"
+          placeholder="Enter GitHub username"
+        />
+        <input type="submit" id="generatebtn" value="Generate URL" />
+      </fieldset>
+      <div id="app"></div>
+    </main>
+    <footer class="container neog-footer">
+      <small>
+        go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      function getGithubUrl(githubUser) {
+        return "https://github.com/" + githubUser;
+      }
+
+      function handleGenerateClick() {
+        const githubUrl = getGithubUrl(inputElement.value);
+        appElement.innerText = githubUrl;
+      }
+
+      const inputElement = document.getElementById("githubInput");
+      const buttonElement = document.getElementById("generatebtn");
+      const appElement = document.getElementById("app");
+
+      buttonElement.addEventListener("click", handleGenerateClick);
+    </script>
+  </body>
+</html>

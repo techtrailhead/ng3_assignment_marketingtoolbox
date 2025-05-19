@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marketing Toolbox</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <hgroup>
+        <nav>
+          <ul>
+            <li><a href="index.html">SmartMarketer Tools</a></li>
+          </ul>
+          <ul>
+            <li><a href="wami-link.html"> WAMI link</a></li>
+            <li><a href="twitter-share.html"> Tweet Link Generator</a></li>
+            <li>
+              <a href="github-url-generator.html">GitHub Link Generator</a>
+            </li>
+          </ul>
+        </nav>
+        <h1>WAMI Link Generator</h1>
+        <p>
+          Create a custom WhatsApp message and send it your target audience.
+        </p>
+      </hgroup>
+    </header>
+    <main class="container">
+      <section>
+        <fieldset>
+          <input
+            type="text"
+            id="input"
+            placeholder="Enter your whatsapp number"
+            required
+          />
+          <select id="messageTemplate">
+            <option value="">-- Choose a message --</option>
+            <option value="Hi! I'm interested in your product.">
+              Hi! I'm interested in your product.
+            </option>
+            <option value="Hello, can we connect regarding a service?">
+              Hello, can we connect regarding a service?
+            </option>
+            <option value="Please share more details.">
+              Please share more details.
+            </option>
+          </select>
+          <input type="submit" id="submitBtn" value="Generate WAMI Link" />
+        </fieldset>
+      </section>
+      <section>
+        <p id="result"></p>
+      </section>
+    </main>
+    <footer class="container neog-footer">
+      <small>
+        go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      function handleBtnClick() {
+        const input = document.getElementById("input");
+        const messageDropdown = document.getElementById("messageTemplate");
+        const selectedMessage = messageDropdown.value;
+
+        const link = convertIntoLink(input.value, selectedMessage);
+        const result = document.getElementById("result");
+
+        if (link == 0) {
+          result.innerText = "Invalid Input";
+        } else {
+          result.innerHTML = `${link}`;
+        }
+      }
+
+      function convertIntoLink(phoneNumber, message) {
+        const baseUrl = "https://wa.me/+91";
+        let cleanNumber = phoneNumber.replace(/[^0-9]/g, "");
+
+        if (cleanNumber.length === 10) {
+          cleanNumber = "91" + cleanNumber;
+        }
+
+        if (cleanNumber.startsWith("91") && cleanNumber.length === 12) {
+          let link = baseUrl + cleanNumber;
+          if (message) {
+            const encodedMessage = encodeURIComponent(message);
+            link += "?text=" + encodedMessage;
+          }
+          return link;
+        }
+
+        return 0;
+      }
+
+      document
+        .getElementById("submitBtn")
+        .addEventListener("click", handleBtnClick);
+    </script>
+  </body>
+</html>

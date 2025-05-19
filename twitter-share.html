@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="Tweet link generator "
+      content="Your place to get started with semantic web development"
+    />
+    <title>Tweet Link Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <hgroup>
+        <hgroup>
+            <nav>
+              <ul>
+                <li><a href="index.html">SmartMarketer Tools</a></li>
+              </ul>
+              <ul>
+                <li><a href="wami-link.html"> WAMI link</a></li>
+                <li><a href="twitter-share.html"> Tweet Link Generator</a></li>
+                <li>
+                  <a href="github-url-generator.html">GitHub Link Generator</a>
+                </li>
+              </ul>
+            </nav>
+            <hr />
+        <h1>Twitter Link Generator</h1>
+        <p>Get your custom Tweet</p>
+      </hgroup>
+    </header>
+    <main class="container">
+      <section>
+        <input type="text" id="input" placeholder="Enter Tweet" required />
+        <input type="submit" id="submitBtn" value="Generate Tweet Link" />
+      </section>
+      <section>
+        <p id="result"></p>
+      </section>
+    </main>
+    <footer class="container neog-footer">
+      <small>
+        go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      function handleBtnClick() {
+        const input = document.getElementById("input");
+        const link = convertIntoLink(input);
+        const result = document.getElementById("result");
+        result.innerHTML = link;
+      }
+      function convertIntoLink(input) {
+        const link =
+          "https://twitter.com/intent/tweet?text=" +
+          encodeURIComponent(String(input.value));
+        return `link`;
+      }
+      const submitBtn = document.getElementById("submitBtn");
+      submitBtn.addEventListener("click", handleBtnClick);
+    </script>
+  </body>
+</html>
